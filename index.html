@@ -2,144 +2,632 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VarchFood | Food Ordering</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VarchFood - Food Ordering</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
-header{background:#087f8c;color:white;padding:18px 14px;position:sticky;top:0;z-index:5}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
+  color:#222;
+}
+header{
+  background:#087f8c;
+  color:white;
+  padding:16px;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 .logo{font-size:25px;font-weight:bold}
-.cart{background:white;color:#087f8c;padding:9px 12px;border-radius:10px;font-weight:bold}
-.search{width:100%;padding:13px;margin-top:14px;border:0;border-radius:10px;font-size:16px}
+header input{
+  width:100%;
+  padding:13px;
+  margin-top:14px;
+  border:0;
+  border-radius:10px;
+  font-size:16px;
+}
 h2{font-size:20px;margin:20px 12px 12px}
-.categories{display:flex;gap:10px;overflow-x:auto;padding:5px 12px 12px}
-.categories button{border:0;background:white;border-radius:12px;padding:12px;white-space:nowrap;box-shadow:0 2px 7px #ddd;font-size:14px}
-.categories button.active{background:#087f8c;color:white}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 12px 20px}
-.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #ddd}
-.foodimg{width:100%;height:125px;object-fit:cover;background:#eee}
+button{cursor:pointer;font-size:14px}
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px;
+}
+.tabs button{
+  background:white;
+  border:0;
+  padding:12px;
+  border-radius:10px;
+  white-space:nowrap;
+}
+.tabs button.active,.primary{
+  background:#087f8c;
+  color:white;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  padding:12px;
+}
+.card{
+  background:white;
+  border-radius:13px;
+  overflow:hidden;
+  box-shadow:0 2px 7px #ddd;
+}
+.card img{
+  width:100%;
+  height:125px;
+  object-fit:cover;
+}
 .info{padding:10px}
-.info h3{margin:2px 0 7px;font-size:16px}
-.info p{margin:5px 0;color:#666;font-size:13px}
-.price{font-size:17px;font-weight:bold;color:#087f8c}
-.row{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:10px}
-button{cursor:pointer}
-.add{border:0;background:#087f8c;color:white;border-radius:8px;padding:8px 10px}
-.order{display:block;text-align:center;background:#e9f7f5;color:#087f8c;padding:9px;border-radius:8px;text-decoration:none;margin-top:9px;font-size:13px;font-weight:bold}
-.restaurant{background:white;margin:0 12px 12px;padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center}
-.restaurant img{width:75px;height:70px;object-fit:cover;border-radius:10px}
-.restaurant h3{margin:0 0 6px}
-footer{position:sticky;bottom:0;background:white;display:flex;justify-content:space-around;padding:12px 0;box-shadow:0 -2px 8px #ddd}
-footer a{text-decoration:none;color:#555;font-size:12px;text-align:center}
-.empty{text-align:center;padding:30px;color:#777;display:none}
+.info h3{font-size:16px;margin:3px 0 8px}
+.info p{font-size:13px;color:#666}
+.price{font-size:18px;font-weight:bold;color:#087f8c}
+button{
+  border:0;
+  border-radius:8px;
+  padding:10px;
+}
+.primary{background:#087f8c;color:white}
+.secondary{background:#e5f4f4;color:#087f8c}
+.full{width:100%;margin-top:8px}
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font-size:15px;
+}
+textarea{min-height:90px;resize:vertical}
+.panel{
+  background:white;
+  margin:12px;
+  padding:14px;
+  border-radius:12px;
+}
+.restaurant{
+  display:flex;
+  gap:12px;
+  padding:12px;
+  margin:12px;
+  background:white;
+  border-radius:12px;
+}
+.restaurant img{
+  width:80px;
+  height:75px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.order-card{
+  background:#f8fbfc;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+  overflow-wrap:anywhere;
+}
+.badge{
+  display:inline-block;
+  background:#fff0c7;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:12px;
+}
+.hidden{display:none!important}
+footer{
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 4px;
+  position:sticky;
+  bottom:0;
+  box-shadow:0 -2px 8px #ddd;
+}
+footer button{
+  background:transparent;
+  color:#444;
+  font-size:12px;
+}
+.notice{
+  margin:12px;
+  padding:12px;
+  background:#fff3cd;
+  border-radius:9px;
+  font-size:13px;
+}
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="top">
     <div class="logo">🍔 VarchFood</div>
-    <div class="cart" onclick="showCart()">🛒 <span id="cartCount">0</span></div>
+    <button onclick="showCart()" style="background:white;color:#087f8c">
+      🛒 Cart <span id="cartCount">0</span>
+    </button>
   </div>
-  <input class="search" id="search" placeholder="🔍 Search food or restaurant..." oninput="renderFoods()">
+  <input id="search" placeholder="🔍 Search food or restaurant..."
+         oninput="renderFoods()">
 </header>
 
-<h2>📂 All Categories</h2>
-<div class="categories" id="categories">
-  <button class="active" onclick="setCategory('All',this)">🍽️ All</button>
-  <button onclick="setCategory('Non-Veg',this)">🍗 Non-Veg</button>
-  <button onclick="setCategory('Veg',this)">🥗 Veg</button>
-  <button onclick="setCategory('Tiffins',this)">🥞 Tiffins</button>
-  <button onclick="setCategory('Fast Food',this)">🍕 Fast Food</button>
+<div id="homePage">
+
+  <h2>🍽️ Food Categories</h2>
+
+  <div class="tabs" id="categoryTabs">
+    <button class="active" onclick="setCategory('All',this)">All</button>
+    <button onclick="setCategory('Non-Veg',this)">🍗 Non-Veg</button>
+    <button onclick="setCategory('Veg',this)">🥗 Veg</button>
+    <button onclick="setCategory('Tiffins',this)">🥞 Tiffins</button>
+    <button onclick="setCategory('Fast Food',this)">🍕 Fast Food</button>
+  </div>
+
+  <h2>🏪 Popular Restaurants</h2>
+  <div id="restaurantList"></div>
+
+  <h2>🔥 Popular Foods</h2>
+  <div class="grid" id="foodList"></div>
+
 </div>
 
-<h2>🏪 Popular Restaurants</h2>
-<div id="restaurants"></div>
+<!-- CUSTOMER ORDER WINDOW -->
+<div id="orderPage" class="hidden">
+  <div class="panel">
+    <button onclick="goHome()">← Back to Home</button>
+    <h2>🛒 Place Your Order</h2>
 
-<h2>🔥 Popular Foods</h2>
-<div class="grid" id="foods"></div>
-<div class="empty" id="empty">Food not found. Try another search.</div>
+    <div id="selectedFoodInfo"></div>
+
+    <label>Customer Name</label>
+    <input id="customerName" placeholder="Enter your name">
+
+    <label>Mobile Number</label>
+    <input id="customerPhone" type="tel"
+           placeholder="Enter your mobile number">
+
+    <label>Your Order / Message</label>
+    <textarea id="customerMessage"
+      placeholder="Example: I want one Chicken Biryani."></textarea>
+
+    <button class="primary full" onclick="placeOrder()">
+      🛒 ORDER NOW
+    </button>
+
+    <p style="font-size:12px;color:#777">
+      Demo only: this request is saved in this browser.
+    </p>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cartPage" class="hidden">
+  <div class="panel">
+    <button onclick="goHome()">← Continue Shopping</button>
+    <h2>🛒 Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal"></h3>
+    <button class="primary full" onclick="checkoutCart()">
+      Proceed to Order
+    </button>
+  </div>
+</div>
+
+<!-- CUSTOMER ORDER HISTORY -->
+<div id="myOrdersPage" class="hidden">
+  <div class="panel">
+    <h2>📦 My Order Requests</h2>
+    <p>Orders saved in this browser are shown here.</p>
+    <div id="myOrders"></div>
+  </div>
+</div>
+
+<!-- OWNER DASHBOARD -->
+<div id="ownerPage" class="hidden">
+  <div class="panel">
+    <h2>👨‍🍳 Restaurant Owner Dashboard</h2>
+
+    <div class="notice">
+      Demo dashboard only. It is not protected by owner login.
+      Orders from other devices will not appear here until a secure
+      online database and authentication are connected.
+    </div>
+
+    <label>Select Demo Restaurant</label>
+    <select id="ownerRestaurant" onchange="renderOwnerOrders()">
+      <option value="Spice Hub">Spice Hub</option>
+      <option value="Green Bowl">Green Bowl</option>
+      <option value="Dosa Corner">Dosa Corner</option>
+      <option value="Pizza Point">Pizza Point</option>
+    </select>
+
+    <h3>🔔 Received Order Requests</h3>
+    <div id="ownerOrders"></div>
+  </div>
+</div>
+
+<div class="notice">
+  ⚠️ VarchFood demo: do not enter real personal information.
+  Real private messaging and cross-device orders require a secure backend.
+</div>
 
 <footer>
-  <a href="#">🏠<br>Home</a>
-  <a href="#search">🔍<br>Search</a>
-  <a href="#categories">📂<br>Categories</a>
-  <a href="#restaurants">🏪<br>Restaurants</a>
-  <a href="#" onclick="showCart();return false">🛒<br>Cart</a>
+  <button onclick="goHome()">🏠<br>Home</button>
+  <button onclick="focusSearch()">🔍<br>Search</button>
+  <button onclick="showCart()">🛒<br>Cart</button>
+  <button onclick="showMyOrders()">📦<br>My Orders</button>
+  <button onclick="showOwner()">👨‍🍳<br>Owner</button>
 </footer>
 
 <script>
-const restaurantData=[
- {name:"Spice Hub",category:"Non-Veg",image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500"},
- {name:"Green Bowl",category:"Veg",image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"},
- {name:"Dosa Corner",category:"Tiffins",image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
- {name:"Pizza Point",category:"Fast Food",image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"}
+const restaurants = [
+  {
+    name:"Spice Hub",
+    category:"Non-Veg",
+    image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500"
+  },
+  {
+    name:"Green Bowl",
+    category:"Veg",
+    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+  },
+  {
+    name:"Dosa Corner",
+    category:"Tiffins",
+    image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"
+  },
+  {
+    name:"Pizza Point",
+    category:"Fast Food",
+    image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+  }
 ];
 
-const foodData=[
- {id:1,name:"Chicken Biryani",category:"Non-Veg",price:180,restaurant:"Spice Hub",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"},
- {id:2,name:"Veg Meals",category:"Veg",price:100,restaurant:"Green Bowl",image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500"},
- {id:3,name:"Masala Dosa",category:"Tiffins",price:70,restaurant:"Dosa Corner",image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
- {id:4,name:"Cheese Pizza",category:"Fast Food",price:150,restaurant:"Pizza Point",image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"},
- {id:5,name:"Paneer Curry",category:"Veg",price:130,restaurant:"Green Bowl",image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"},
- {id:6,name:"Chicken Wings",category:"Non-Veg",price:160,restaurant:"Spice Hub",image:"https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500"}
+const foods = [
+  {
+    id:1,
+    name:"Chicken Biryani",
+    category:"Non-Veg",
+    price:180,
+    restaurant:"Spice Hub",
+    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"
+  },
+  {
+    id:2,
+    name:"Veg Meals",
+    category:"Veg",
+    price:100,
+    restaurant:"Green Bowl",
+    image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500"
+  },
+  {
+    id:3,
+    name:"Masala Dosa",
+    category:"Tiffins",
+    price:70,
+    restaurant:"Dosa Corner",
+    image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"
+  },
+  {
+    id:4,
+    name:"Cheese Pizza",
+    category:"Fast Food",
+    price:150,
+    restaurant:"Pizza Point",
+    image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+  },
+  {
+    id:5,
+    name:"Paneer Curry",
+    category:"Veg",
+    price:130,
+    restaurant:"Green Bowl",
+    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"
+  },
+  {
+    id:6,
+    name:"Chicken Wings",
+    category:"Non-Veg",
+    price:160,
+    restaurant:"Spice Hub",
+    image:"https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500"
+  }
 ];
 
-let selectedCategory="All";
-let cart=[];
+let selectedCategory = "All";
+let selectedFood = null;
+let cart = [];
 
-function setCategory(category,button){
- selectedCategory=category;
- document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
- button.classList.add("active");
- renderFoods();
+function readOrders(){
+  try{
+    return JSON.parse(localStorage.getItem("varchfood_orders") || "[]");
+  }catch(e){
+    return [];
+  }
+}
+
+function saveOrders(orders){
+  localStorage.setItem("varchfood_orders",JSON.stringify(orders));
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c];
+  });
 }
 
 function renderRestaurants(){
- const list=document.getElementById("restaurants");
- list.innerHTML=restaurantData.map(r=>`
- <div class="restaurant">
- <img src="${r.image}" alt="${r.name}">
- <div><h3>${r.name}</h3><p>🍽️ ${r.category} · Sample restaurant</p></div>
- </div>`).join("");
+  document.getElementById("restaurantList").innerHTML =
+    restaurants.map(r=>`
+      <div class="restaurant">
+        <img src="${r.image}" alt="${escapeHTML(r.name)}">
+        <div>
+          <h3>${escapeHTML(r.name)}</h3>
+          <p>${escapeHTML(r.category)} Restaurant</p>
+          <button class="secondary"
+            onclick="filterRestaurant('${r.name}')">
+            View Foods
+          </button>
+        </div>
+      </div>
+    `).join("");
+}
+
+function setCategory(value,button){
+  selectedCategory=value;
+
+  document.querySelectorAll("#categoryTabs button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+  renderFoods();
+}
+
+function filterRestaurant(name){
+  document.getElementById("search").value=name;
+  goHome();
+  renderFoods();
+  document.getElementById("foodList").scrollIntoView();
 }
 
 function renderFoods(){
- const query=document.getElementById("search").value.toLowerCase();
- const list=foodData.filter(f=>
- (selectedCategory==="All"||f.category===selectedCategory)&&
- (f.name.toLowerCase().includes(query)||f.restaurant.toLowerCase().includes(query)||f.category.toLowerCase().includes(query))
- );
- document.getElementById("foods").innerHTML=list.map(f=>`
- <div class="card">
- <img class="foodimg" src="${f.image}" alt="${f.name}">
- <div class="info">
- <h3>${f.name}</h3>
- <p>${f.restaurant}</p>
- <p>${f.category}</p>
- <div class="row"><span class="price">₹${f.price}</span>
- <button class="add" onclick="addToCart(${f.id})">+ Add</button></div>
- <a class="order" href="https://wa.me/?text=${encodeURIComponent('I want to order '+f.name+' from '+f.restaurant+' for ₹'+f.price)}" target="_blank">WhatsApp Order</a>
- </div></div>`).join("");
- document.getElementById("empty").style.display=list.length?"none":"block";
+  const query=document.getElementById("search").value.toLowerCase();
+
+  const list=foods.filter(f=>
+    (selectedCategory==="All" || f.category===selectedCategory) &&
+    (
+      f.name.toLowerCase().includes(query) ||
+      f.restaurant.toLowerCase().includes(query) ||
+      f.category.toLowerCase().includes(query)
+    )
+  );
+
+  document.getElementById("foodList").innerHTML =
+    list.length ? list.map(f=>`
+      <div class="card">
+        <img src="${f.image}" alt="${escapeHTML(f.name)}">
+        <div class="info">
+          <h3>${escapeHTML(f.name)}</h3>
+          <p>${escapeHTML(f.restaurant)}</p>
+          <p>${escapeHTML(f.category)}</p>
+          <div class="price">₹${f.price}</div>
+          <button class="secondary full"
+            onclick="addToCart(${f.id})">+ Add to Cart</button>
+          <button class="primary full"
+            onclick="openOrder(${f.id})">Order / Comment</button>
+        </div>
+      </div>
+    `).join("") : "<p>No food found.</p>";
+}
+
+function openOrder(id){
+  selectedFood=foods.find(f=>f.id===id);
+
+  document.getElementById("selectedFoodInfo").innerHTML=`
+    <h3>${escapeHTML(selectedFood.name)}</h3>
+    <p>Restaurant: ${escapeHTML(selectedFood.restaurant)}</p>
+    <h3>Price: ₹${selectedFood.price}</h3>
+  `;
+
+  showPage("orderPage");
+}
+
+function placeOrder(){
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const message=document.getElementById("customerMessage").value.trim();
+
+  if(!selectedFood){
+    alert("Please select a food item.");
+    return;
+  }
+
+  if(!name || !message){
+    alert("Please enter your name and order message.");
+    return;
+  }
+
+  const orders=readOrders();
+
+  const order={
+    id:Date.now(),
+    customer:name,
+    phone:phone,
+    foodId:selectedFood.id,
+    food:selectedFood.name,
+    restaurant:selectedFood.restaurant,
+    price:selectedFood.price,
+    message:message,
+    status:"New Order",
+    time:new Date().toLocaleString()
+  };
+
+  orders.push(order);
+  saveOrders(orders);
+
+  document.getElementById("customerMessage").value="";
+
+  alert(
+    "Order request created!\n\n" +
+    selectedFood.name + "\n" +
+    "Restaurant: " + selectedFood.restaurant + "\n" +
+    "Status: New Order"
+  );
+
+  showMyOrders();
 }
 
 function addToCart(id){
- const food=foodData.find(f=>f.id===id);
- cart.push(food);
- document.getElementById("cartCount").textContent=cart.length;
- alert(food.name+" added to cart!");
+  const food=foods.find(f=>f.id===id);
+  cart.push(food);
+  document.getElementById("cartCount").textContent=cart.length;
+  alert(food.name+" added to cart.");
 }
 
 function showCart(){
- if(!cart.length){alert("Your cart is empty!");return;}
- const total=cart.reduce((sum,f)=>sum+f.price,0);
- const details=cart.map(f=>f.name+" - ₹"+f.price).join("\\n");
- alert("YOUR CART\\n\\n"+details+"\\n\\nTotal: ₹"+total+"\\n\\nUse WhatsApp Order on a food card to contact the restaurant.");
+  showPage("cartPage");
+
+  const box=document.getElementById("cartItems");
+
+  if(cart.length===0){
+    box.innerHTML="<p>Your cart is empty.</p>";
+    document.getElementById("cartTotal").textContent="";
+    return;
+  }
+
+  box.innerHTML=cart.map((f,i)=>`
+    <div class="order-card">
+      <b>${escapeHTML(f.name)}</b>
+      <p>${escapeHTML(f.restaurant)} — ₹${f.price}</p>
+      <button onclick="removeCartItem(${i})">Remove</button>
+    </div>
+  `).join("");
+
+  document.getElementById("cartTotal").textContent=
+    "Total: ₹"+cart.reduce((sum,f)=>sum+f.price,0);
+}
+
+function removeCartItem(index){
+  cart.splice(index,1);
+  document.getElementById("cartCount").textContent=cart.length;
+  showCart();
+}
+
+function checkoutCart(){
+  if(cart.length===0){
+    alert("Your cart is empty.");
+    return;
+  }
+
+  selectedFood=cart[0];
+
+  document.getElementById("selectedFoodInfo").innerHTML=
+    "<p>Cart items: "+cart.length+
+    "</p><p>Total: ₹"+
+    cart.reduce((sum,f)=>sum+f.price,0)+"</p>";
+
+  showPage("orderPage");
+}
+
+function showMyOrders(){
+  showPage("myOrdersPage");
+
+  const orders=readOrders();
+
+  document.getElementById("myOrders").innerHTML=
+    orders.length ? orders.slice().reverse().map(o=>`
+      <div class="order-card">
+        <b>${escapeHTML(o.food)}</b>
+        <p>Restaurant: ${escapeHTML(o.restaurant)}</p>
+        <p>Message: ${escapeHTML(o.message)}</p>
+        <p>Price: ₹${o.price}</p>
+        <span class="badge">${escapeHTML(o.status)}</span>
+        <p><small>${escapeHTML(o.time)}</small></p>
+      </div>
+    `).join("") : "<p>No order requests yet.</p>";
+}
+
+function showOwner(){
+  showPage("ownerPage");
+  renderOwnerOrders();
+}
+
+function renderOwnerOrders(){
+  const restaurant=document.getElementById("ownerRestaurant").value;
+
+  const orders=readOrders().filter(o=>o.restaurant===restaurant);
+
+  document.getElementById("ownerOrders").innerHTML=
+    orders.length ? orders.slice().reverse().map(o=>`
+      <div class="order-card">
+        <h3>🔔 New Order</h3>
+        <p><b>Customer:</b> ${escapeHTML(o.customer)}</p>
+        <p><b>Food:</b> ${escapeHTML(o.food)}</p>
+        <p><b>Price:</b> ₹${o.price}</p>
+        <p><b>Message:</b> ${escapeHTML(o.message)}</p>
+        <p><b>Phone:</b> ${escapeHTML(o.phone || "Not provided")}</p>
+        <span class="badge">${escapeHTML(o.status)}</span>
+        <p><small>${escapeHTML(o.time)}</small></p>
+        <button class="primary"
+          onclick="updateOrder(${o.id},'Accepted')">Accept</button>
+        <button
+          onclick="updateOrder(${o.id},'Rejected')">Reject</button>
+      </div>
+    `).join("") : "<p>No orders for this restaurant in this browser.</p>";
+}
+
+function updateOrder(id,status){
+  const orders=readOrders();
+  const order=orders.find(o=>o.id===id);
+
+  if(order){
+    order.status=status;
+    saveOrders(orders);
+    renderOwnerOrders();
+    alert("Order status updated: "+status);
+  }
+}
+
+function showPage(id){
+  ["homePage","orderPage","cartPage","myOrdersPage","ownerPage"]
+    .forEach(page=>document.getElementById(page).classList.add("hidden"));
+
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  showPage("homePage");
+}
+
+function focusSearch(){
+  goHome();
+  document.getElementById("search").focus();
 }
 
 renderRestaurants();
 renderFoods();
 </script>
+
 </body>
 </html>
