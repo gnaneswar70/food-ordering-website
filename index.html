@@ -1,78 +1,145 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VarchFood - Food Near You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VarchFood | Food Ordering</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f6f7f8;color:#222}
-header{background:#ff5722;color:white;padding:18px 15px}
-header h1{margin:0;font-size:28px}
-header p{margin:6px 0 0}
-.search{padding:15px}
-.search input{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;font-size:16px}
-h2{font-size:20px;margin:12px 15px}
-.categories{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 15px}
-.category{background:white;border:0;border-radius:14px;padding:18px 8px;box-shadow:0 2px 8px #ddd;font-size:17px;font-weight:bold}
-.category span{display:block;font-size:36px;margin-bottom:8px}
-.category:active{background:#ffe4d9}
-.restaurant{background:white;margin:15px;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #ddd}
-.food{height:130px;background:#ffe5d9;display:flex;align-items:center;justify-content:center;font-size:65px}
-.details{padding:14px}
-.details h3{margin:0 0 8px}
-.details p{color:#666;font-size:14px}
-.buttons{display:flex;gap:8px;flex-wrap:wrap}
-.buttons a{background:#ff5722;color:white;padding:10px;border-radius:8px;text-decoration:none;font-size:14px}
-.buttons .whatsapp{background:#168b51}
-footer{text-align:center;padding:20px;color:#666}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#222}
+header{background:#087f8c;color:white;padding:18px 14px;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:25px;font-weight:bold}
+.cart{background:white;color:#087f8c;padding:9px 12px;border-radius:10px;font-weight:bold}
+.search{width:100%;padding:13px;margin-top:14px;border:0;border-radius:10px;font-size:16px}
+h2{font-size:20px;margin:20px 12px 12px}
+.categories{display:flex;gap:10px;overflow-x:auto;padding:5px 12px 12px}
+.categories button{border:0;background:white;border-radius:12px;padding:12px;white-space:nowrap;box-shadow:0 2px 7px #ddd;font-size:14px}
+.categories button.active{background:#087f8c;color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 12px 20px}
+.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #ddd}
+.foodimg{width:100%;height:125px;object-fit:cover;background:#eee}
+.info{padding:10px}
+.info h3{margin:2px 0 7px;font-size:16px}
+.info p{margin:5px 0;color:#666;font-size:13px}
+.price{font-size:17px;font-weight:bold;color:#087f8c}
+.row{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:10px}
+button{cursor:pointer}
+.add{border:0;background:#087f8c;color:white;border-radius:8px;padding:8px 10px}
+.order{display:block;text-align:center;background:#e9f7f5;color:#087f8c;padding:9px;border-radius:8px;text-decoration:none;margin-top:9px;font-size:13px;font-weight:bold}
+.restaurant{background:white;margin:0 12px 12px;padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center}
+.restaurant img{width:75px;height:70px;object-fit:cover;border-radius:10px}
+.restaurant h3{margin:0 0 6px}
+footer{position:sticky;bottom:0;background:white;display:flex;justify-content:space-around;padding:12px 0;box-shadow:0 -2px 8px #ddd}
+footer a{text-decoration:none;color:#555;font-size:12px;text-align:center}
+.empty{text-align:center;padding:30px;color:#777;display:none}
 </style>
 </head>
 <body>
 <header>
-<h1>🍴 VarchFood</h1>
-<p>Your favourite food, all in one place!</p>
-</header><div class="search">
-<input id="search" placeholder="🔍 Search food or restaurant..." oninput="searchFood()">
-</div><h2>🍽️ Choose Your Category</h2>
-<div class="categories">
-<button class="category" onclick="showCategory('Non-Veg')"><span>🍗</span>Non-Veg</button>
-<button class="category" onclick="showCategory('Veg')"><span>🥦</span>Veg</button>
-<button class="category" onclick="showCategory('Tiffins')"><span>🥞</span>Tiffins</button>
-<button class="category" onclick="showCategory('Fast Food')"><span>🍕</span>Fast Food</button>
-<button class="category" onclick="showCategory('All')" style="grid-column:span 2"><span>🍽️</span>Show All Food</button>
-</div><h2 id="listTitle">📍 Restaurants & Food</h2>
-<div id="foodList">
-<div class="restaurant" data-category="Non-Veg">
-<div class="food">🍗</div><div class="details">
-<h3>Chicken Biryani</h3><p>Non-Veg · Sample price ₹180</p>
-<div class="buttons"><a class="whatsapp" href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Chicken%20Biryani" target="_blank">WhatsApp Order</a><a href="tel:" >📞 Call</a></div>
-</div></div><div class="restaurant" data-category="Veg">
-<div class="food">🥗</div><div class="details">
-<h3>Veg Meals</h3><p>Veg · Sample price ₹100</p>
-<div class="buttons"><a class="whatsapp" href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Veg%20Meals" target="_blank">WhatsApp Order</a><a href="tel:">📞 Call</a></div>
-</div></div><div class="restaurant" data-category="Tiffins">
-<div class="food">🥞</div><div class="details">
-<h3>Masala Dosa</h3><p>Tiffins · Sample price ₹70</p>
-<div class="buttons"><a class="whatsapp" href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Masala%20Dosa" target="_blank">WhatsApp Order</a><a href="tel:">📞 Call</a></div>
-</div></div><div class="restaurant" data-category="Fast Food">
-<div class="food">🍕</div><div class="details">
-<h3>Cheese Pizza</h3><p>Fast Food · Sample price ₹150</p>
-<div class="buttons"><a class="whatsapp" href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Cheese%20Pizza" target="_blank">WhatsApp Order</a><a href="tel:">📞 Call</a></div>
-</div></div>
-</div><footer>© 2026 VarchFood | Sample Website</footer><script>
-function showCategory(category){
-document.querySelectorAll('.restaurant').forEach(item=>{
-item.style.display=(category==='All'||item.dataset.category===category)?'block':'none';
-});
-document.getElementById('listTitle').textContent=category==='All'?'🍽️ All Food': '🍽️ '+category;
-document.getElementById('search').value='';
+  <div class="top">
+    <div class="logo">🍔 VarchFood</div>
+    <div class="cart" onclick="showCart()">🛒 <span id="cartCount">0</span></div>
+  </div>
+  <input class="search" id="search" placeholder="🔍 Search food or restaurant..." oninput="renderFoods()">
+</header>
+
+<h2>📂 All Categories</h2>
+<div class="categories" id="categories">
+  <button class="active" onclick="setCategory('All',this)">🍽️ All</button>
+  <button onclick="setCategory('Non-Veg',this)">🍗 Non-Veg</button>
+  <button onclick="setCategory('Veg',this)">🥗 Veg</button>
+  <button onclick="setCategory('Tiffins',this)">🥞 Tiffins</button>
+  <button onclick="setCategory('Fast Food',this)">🍕 Fast Food</button>
+</div>
+
+<h2>🏪 Popular Restaurants</h2>
+<div id="restaurants"></div>
+
+<h2>🔥 Popular Foods</h2>
+<div class="grid" id="foods"></div>
+<div class="empty" id="empty">Food not found. Try another search.</div>
+
+<footer>
+  <a href="#">🏠<br>Home</a>
+  <a href="#search">🔍<br>Search</a>
+  <a href="#categories">📂<br>Categories</a>
+  <a href="#restaurants">🏪<br>Restaurants</a>
+  <a href="#" onclick="showCart();return false">🛒<br>Cart</a>
+</footer>
+
+<script>
+const restaurantData=[
+ {name:"Spice Hub",category:"Non-Veg",image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500"},
+ {name:"Green Bowl",category:"Veg",image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"},
+ {name:"Dosa Corner",category:"Tiffins",image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
+ {name:"Pizza Point",category:"Fast Food",image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"}
+];
+
+const foodData=[
+ {id:1,name:"Chicken Biryani",category:"Non-Veg",price:180,restaurant:"Spice Hub",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"},
+ {id:2,name:"Veg Meals",category:"Veg",price:100,restaurant:"Green Bowl",image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500"},
+ {id:3,name:"Masala Dosa",category:"Tiffins",price:70,restaurant:"Dosa Corner",image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
+ {id:4,name:"Cheese Pizza",category:"Fast Food",price:150,restaurant:"Pizza Point",image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"},
+ {id:5,name:"Paneer Curry",category:"Veg",price:130,restaurant:"Green Bowl",image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"},
+ {id:6,name:"Chicken Wings",category:"Non-Veg",price:160,restaurant:"Spice Hub",image:"https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500"}
+];
+
+let selectedCategory="All";
+let cart=[];
+
+function setCategory(category,button){
+ selectedCategory=category;
+ document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderFoods();
 }
-function searchFood(){
-const query=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.restaurant').forEach(item=>{
-item.style.display=item.innerText.toLowerCase().includes(query)?'block':'none';
-});
-document.getElementById('listTitle').textContent='🔍 Search Results';
+
+function renderRestaurants(){
+ const list=document.getElementById("restaurants");
+ list.innerHTML=restaurantData.map(r=>`
+ <div class="restaurant">
+ <img src="${r.image}" alt="${r.name}">
+ <div><h3>${r.name}</h3><p>🍽️ ${r.category} · Sample restaurant</p></div>
+ </div>`).join("");
 }
-</script></body>
+
+function renderFoods(){
+ const query=document.getElementById("search").value.toLowerCase();
+ const list=foodData.filter(f=>
+ (selectedCategory==="All"||f.category===selectedCategory)&&
+ (f.name.toLowerCase().includes(query)||f.restaurant.toLowerCase().includes(query)||f.category.toLowerCase().includes(query))
+ );
+ document.getElementById("foods").innerHTML=list.map(f=>`
+ <div class="card">
+ <img class="foodimg" src="${f.image}" alt="${f.name}">
+ <div class="info">
+ <h3>${f.name}</h3>
+ <p>${f.restaurant}</p>
+ <p>${f.category}</p>
+ <div class="row"><span class="price">₹${f.price}</span>
+ <button class="add" onclick="addToCart(${f.id})">+ Add</button></div>
+ <a class="order" href="https://wa.me/?text=${encodeURIComponent('I want to order '+f.name+' from '+f.restaurant+' for ₹'+f.price)}" target="_blank">WhatsApp Order</a>
+ </div></div>`).join("");
+ document.getElementById("empty").style.display=list.length?"none":"block";
+}
+
+function addToCart(id){
+ const food=foodData.find(f=>f.id===id);
+ cart.push(food);
+ document.getElementById("cartCount").textContent=cart.length;
+ alert(food.name+" added to cart!");
+}
+
+function showCart(){
+ if(!cart.length){alert("Your cart is empty!");return;}
+ const total=cart.reduce((sum,f)=>sum+f.price,0);
+ const details=cart.map(f=>f.name+" - ₹"+f.price).join("\\n");
+ alert("YOUR CART\\n\\n"+details+"\\n\\nTotal: ₹"+total+"\\n\\nUse WhatsApp Order on a food card to contact the restaurant.");
+}
+
+renderRestaurants();
+renderFoods();
+</script>
+</body>
 </html>
