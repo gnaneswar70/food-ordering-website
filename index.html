@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VarchFood | Find Food Near You</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#222}
+header{background:#ff5722;color:white;padding:18px;position:sticky;top:0}
+header h1{margin:0;font-size:27px}
+header p{margin:5px 0 0}
+.search{padding:14px}
+.search input{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;font-size:16px}
+h2{padding:0 14px;font-size:20px}
+.categories{display:flex;gap:10px;overflow-x:auto;padding:0 14px}
+.categories button{border:0;border-radius:20px;padding:11px 17px;background:white;white-space:nowrap}
+.list{padding:0 14px 20px}
+.card{background:white;border-radius:14px;margin:15px 0;overflow:hidden;box-shadow:0 2px 8px #ddd}
+.food{height:150px;background:#ffe1d5;display:flex;align-items:center;justify-content:center;font-size:70px}
+.details{padding:14px}
+.details h3{margin:0 0 7px}
+.details p{color:#666;margin:6px 0}
+.buttons{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.buttons a,.buttons button{border:0;border-radius:8px;padding:10px;text-decoration:none;background:#ff5722;color:white;font-size:14px}
+.buttons .chat{background:#168b51}
+.buttons .call{background:#333}
+footer{text-align:center;padding:20px;color:#777}
+</style>
+</head>
+<body>
+<header>
+<h1>🍴 VarchFood</h1>
+<p>Your food. Your nearby restaurants.</p>
+</header>
+<div class="search">
+<input id="search" placeholder="🔍 Search food or restaurant..." oninput="filterFood()">
+</div>
+<h2>🍽️ Explore Categories</h2>
+<div class="categories">
+<button onclick="showCategory('All')">All</button>
+<button onclick="showCategory('Biryani')">🍗 Biryani</button>
+<button onclick="showCategory('Pizza')">🍕 Pizza</button>
+<button onclick="showCategory('Dosa')">🥞 Dosa</button>
+<button onclick="showCategory('Burger')">🍔 Burger</button>
+</div>
+<h2>📍 Restaurants Near You</h2>
+<div class="list" id="restaurants">
+<div class="card" data-category="Biryani">
+<div class="food">🍗</div>
+<div class="details">
+<h3>Royal Biryani House</h3>
+<p>⭐ 4.5 · Biryani · Add your local restaurant details</p>
+<p>Chicken Biryani — ₹180</p>
+<div class="buttons">
+<a href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Chicken%20Biryani" target="_blank">🛒 WhatsApp Order</a>
+<a class="chat" href="https://wa.me/?text=Hi%2C%20I%20have%20a%20question%20about%20your%20menu" target="_blank">💬 Chat</a>
+<a class="call" href="tel:">📞 Call</a>
+</div></div></div>
+<div class="card" data-category="Pizza">
+<div class="food">🍕</div>
+<div class="details">
+<h3>Pizza Corner</h3>
+<p>⭐ 4.2 · Pizza</p>
+<p>Cheese Pizza — ₹150</p>
+<div class="buttons">
+<a href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Cheese%20Pizza" target="_blank">🛒 WhatsApp Order</a>
+<a class="chat" href="https://wa.me/" target="_blank">💬 Chat</a>
+<a class="call" href="tel:">📞 Call</a>
+</div></div></div>
+<div class="card" data-category="Dosa">
+<div class="food">🥞</div>
+<div class="details">
+<h3>Mana Tiffins</h3>
+<p>⭐ 4.3 · South Indian</p>
+<p>Masala Dosa — ₹70</p>
+<div class="buttons">
+<a href="https://wa.me/?text=Hi%2C%20I%20want%20to%20order%20Masala%20Dosa" target="_blank">🛒 WhatsApp Order</a>
+<a class="chat" href="https://wa.me/" target="_blank">💬 Chat</a>
+<a class="call" href="tel:">📞 Call</a>
+</div></div></div>
+</div>
+<footer>© 2026 VarchFood · Demo Website</footer>
+<script>
+function filterFood(){
+let q=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
+});
+}
+function showCategory(cat){
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=cat==='All'||c.dataset.category===cat?'block':'none';
+});
+document.getElementById('search').value='';
+}
+</script>
+</body>
+</html>
