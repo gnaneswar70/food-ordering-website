@@ -1,126 +1,633 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#12805c">
-<meta name="description" content="Order fresh chicken, fish, mutton, biryani and more with VarchFood. Browse popular picks, manage your cart and place a demo order.">
-<title>VarchFood | Fresh food, easy ordering</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VarchFood - Food Ordering</title>
+
 <style>
-:root{--green:#087f5b;--green2:#056344;--bg:#f7f8f5;--ink:#15231c;--muted:#68756d;--line:#e5e9e3;--white:#fff;--orange:#f59e0b;--red:#d93b3b;--shadow:0 12px 34px #173b2910}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;letter-spacing:-.1px}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{color:inherit}.hidden{display:none!important}.topbar{background:#fff;color:var(--ink);padding:13px max(16px,calc((100vw - 1100px)/2));display:flex;gap:12px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line);box-shadow:0 4px 18px #18392708}.brand{font-size:23px;font-weight:900;letter-spacing:-.8px;color:var(--green2)}.brand span{color:#f59e0b}.top-actions{display:flex;gap:8px;align-items:center}.small-btn{padding:8px 13px;border-radius:999px;background:#eaf6ef;color:var(--green2);border:1px solid #d5eadc;font-weight:750}.container{max-width:1100px;margin:auto;padding:18px 16px 100px}.hero{background:radial-gradient(circle at 85% 15%,#42b883 0,transparent 27%),linear-gradient(120deg,#064e3b,#087f5b 62%,#15966a);color:white;padding:clamp(24px,5vw,46px);border-radius:28px;display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:center;box-shadow:0 18px 45px #075a3c25;position:relative;overflow:hidden}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.04;letter-spacing:-1.6px;margin:0 0 14px;font-weight:900}.hero p{margin:0 0 22px;color:#e5fff3;font-size:16px;max-width:440px}.hero-emoji{text-align:center;font-size:clamp(60px,10vw,112px);filter:drop-shadow(0 14px 16px #003e2d40);transform:rotate(-5deg)}.search-wrap{display:flex;gap:8px;background:white;padding:7px;border-radius:15px;max-width:560px;box-shadow:0 8px 22px #003c281c}.search-wrap input{border:0;outline:0;flex:1;min-width:0;padding:9px;color:#17231e}.primary{background:var(--green);color:white;padding:11px 17px;border-radius:12px;font-weight:800;box-shadow:0 5px 12px #087f5b1c}.primary:hover{background:var(--green2)}.secondary{background:#eaf5ef;color:var(--green2);padding:10px 14px;border-radius:10px;font-weight:700}.danger{background:#fff0f0;color:#a52d2d;padding:9px 12px;border-radius:9px}.section-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:30px 0 14px}.section-head h2{font-size:22px;letter-spacing:-.5px;margin:0;font-weight:850}.muted{color:var(--muted)}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 8px}.chip{white-space:nowrap;padding:10px 15px;border-radius:999px;background:white;border:1px solid var(--line);font-weight:700;box-shadow:0 2px 7px #18392705}.chip.active{background:#dff5e9;border-color:#a7dfc1;color:var(--green2)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.card{background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 4px 18px #193b2b07;transition:transform .18s ease,box-shadow .18s ease}.card:hover{transform:translateY(-3px);box-shadow:0 13px 28px #193b2b12}.food-art{height:158px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#fff 0,#f5f6ed 62%,#e9f4e8 100%);font-size:74px;position:relative}.product-photo{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.photo-fallback{width:100%;height:100%;place-items:center;background:#f5f6ed;font-size:58px}.badge{position:absolute;z-index:1;top:12px;left:12px;background:#fff;color:var(--green2);font-size:10px;letter-spacing:.4px;font-weight:900;border-radius:7px;padding:6px 9px;box-shadow:0 3px 10px #173b2910}.card-body{padding:15px}.card h3{margin:0 0 5px;font-size:17px}.desc{font-size:12px;color:var(--muted);min-height:34px}.card-bottom{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:12px}.price{font-weight:850;font-size:18px}.price small{font-size:11px;color:var(--muted);font-weight:500}.add-btn{background:var(--green);color:white;padding:9px 13px;border-radius:10px;font-weight:850;box-shadow:0 4px 10px #087f5b1b}.qty{display:flex;align-items:center;gap:10px;background:#e8f6ee;border-radius:10px;padding:4px}.qty button{background:white;color:var(--green);border-radius:7px;width:27px;height:27px;font-weight:900}.empty{background:white;border:1px dashed #cad8cf;border-radius:16px;padding:28px;text-align:center;color:var(--muted)}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff5;backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:8;padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px #1839270b}.nav-inner{width:min(700px,100%);display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.nav-btn{background:white;color:#68756e;padding:7px 3px;border-radius:12px;font-size:11px;font-weight:750;display:grid;gap:2px;justify-items:center}.nav-btn .ico{font-size:22px}.nav-btn.active{background:#e8f6ee;color:var(--green)}.count{display:inline-grid;place-items:center;background:#f59e0b;color:#202820;border-radius:50%;font-size:10px;min-width:17px;height:17px;padding:0 4px;margin-left:3px}.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(15px,3vw,24px);box-shadow:var(--shadow);margin-top:16px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:5px}.field label{font-size:13px;font-weight:750}.field input,.field textarea,.field select{width:100%;padding:11px 12px;border:1px solid #d5dfd9;border-radius:10px;background:white;outline-color:var(--green)}.field.full{grid-column:1/-1}.cart-row,.order-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.cart-row:last-child,.order-row:last-child{border-bottom:0}.row-title{font-weight:750}.total-row{display:flex;justify-content:space-between;font-size:19px;font-weight:850;padding:15px 0}.note{background:#fff7df;border:1px solid #f4dfa0;padding:11px 13px;border-radius:12px;color:#6b5011;font-size:13px;margin:12px 0}.success{background:#e7f8ee;border:1px solid #b5e5c8;color:#12623e;padding:12px;border-radius:11px;margin:10px 0}.modal-backdrop{position:fixed;inset:0;background:#10231ccc;z-index:20;display:grid;place-items:center;padding:16px}.modal{width:min(460px,100%);max-height:90vh;overflow:auto;background:white;border-radius:20px;padding:22px;box-shadow:0 18px 70px #0004}.modal h2{margin:0 0 6px}.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.close{background:#eef2ef;border-radius:50%;width:34px;height:34px;font-size:20px}.chat-layout{display:grid;grid-template-columns:1fr;gap:12px}.chat-box{background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}.chat-head{padding:15px;background:var(--green);color:white;display:flex;justify-content:space-between;align-items:center}.chat-head small{display:block;color:#d9ffeb}.chat-messages{height:300px;overflow:auto;padding:16px;background:#f7faf8;display:flex;flex-direction:column;gap:10px}.bubble{max-width:90%;padding:10px 12px;border-radius:13px;background:white;border:1px solid var(--line);align-self:flex-start}.bubble.mine{background:#dff5e8;border-color:#c2e9d2;align-self:flex-end}.chat-compose{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.chat-compose input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px}.suggestions{padding:12px}.suggestion-title{font-size:13px;font-weight:850;margin-bottom:8px}.suggestion{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.suggestion:last-child{border-bottom:0}.suggestion .left{display:flex;gap:10px;align-items:center}.mini-art{width:44px;height:44px;border-radius:11px;background:#e8f6ee;display:grid;place-items:center;font-size:25px}.pill{background:#fff0cb;color:#7b5400;font-size:10px;font-weight:850;padding:4px 6px;border-radius:6px}.footer{text-align:center;color:var(--muted);font-size:12px;margin:25px 0}.user-line{display:flex;gap:10px;align-items:center}.avatar{width:35px;height:35px;display:grid;place-items:center;border-radius:50%;background:#dff5e8;color:var(--green2);font-weight:900}@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.hero{grid-template-columns:1fr}.hero-emoji{display:none}.food-art{height:115px;font-size:58px}.card-body{padding:10px}.card h3{font-size:15px}.desc{min-height:42px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.topbar{padding:12px 14px}.brand{font-size:20px}.hide-mobile{display:none}.container{padding:14px 12px 100px}}@media(max-width:360px){.grid{grid-template-columns:1fr}.food-art{height:150px}}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
+  color:#222;
+}
+header{
+  background:#087f8c;
+  color:white;
+  padding:16px;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{font-size:25px;font-weight:bold}
+header input{
+  width:100%;
+  padding:13px;
+  margin-top:14px;
+  border:0;
+  border-radius:10px;
+  font-size:16px;
+}
+h2{font-size:20px;margin:20px 12px 12px}
+button{cursor:pointer;font-size:14px}
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px;
+}
+.tabs button{
+  background:white;
+  border:0;
+  padding:12px;
+  border-radius:10px;
+  white-space:nowrap;
+}
+.tabs button.active,.primary{
+  background:#087f8c;
+  color:white;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  padding:12px;
+}
+.card{
+  background:white;
+  border-radius:13px;
+  overflow:hidden;
+  box-shadow:0 2px 7px #ddd;
+}
+.card img{
+  width:100%;
+  height:125px;
+  object-fit:cover;
+}
+.info{padding:10px}
+.info h3{font-size:16px;margin:3px 0 8px}
+.info p{font-size:13px;color:#666}
+.price{font-size:18px;font-weight:bold;color:#087f8c}
+button{
+  border:0;
+  border-radius:8px;
+  padding:10px;
+}
+.primary{background:#087f8c;color:white}
+.secondary{background:#e5f4f4;color:#087f8c}
+.full{width:100%;margin-top:8px}
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font-size:15px;
+}
+textarea{min-height:90px;resize:vertical}
+.panel{
+  background:white;
+  margin:12px;
+  padding:14px;
+  border-radius:12px;
+}
+.restaurant{
+  display:flex;
+  gap:12px;
+  padding:12px;
+  margin:12px;
+  background:white;
+  border-radius:12px;
+}
+.restaurant img{
+  width:80px;
+  height:75px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.order-card{
+  background:#f8fbfc;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+  overflow-wrap:anywhere;
+}
+.badge{
+  display:inline-block;
+  background:#fff0c7;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:12px;
+}
+.hidden{display:none!important}
+footer{
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 4px;
+  position:sticky;
+  bottom:0;
+  box-shadow:0 -2px 8px #ddd;
+}
+footer button{
+  background:transparent;
+  color:#444;
+  font-size:12px;
+}
+.notice{
+  margin:12px;
+  padding:12px;
+  background:#fff3cd;
+  border-radius:9px;
+  font-size:13px;
+}
 </style>
 </head>
+
 <body>
-<header class="topbar">
-  <div class="brand">🍽️ Varch<span>Food</span></div>
-  <div class="top-actions">
-    <span id="welcomeName" class="hide-mobile">Fresh food, easy ordering</span>
-    <button class="small-btn" id="accountBtn">👤 Sign in</button>
+
+<header>
+  <div class="top">
+    <div class="logo">🍔 VarchFood</div>
+    <button onclick="showCart()" style="background:white;color:#087f8c">
+      🛒 Cart <span id="cartCount">0</span>
+    </button>
   </div>
+  <input id="search" placeholder="🔍 Search food or restaurant..."
+         oninput="renderFoods()">
 </header>
 
-<main class="container">
-  <section id="homeView">
-    <div class="hero">
-      <div>
-        <h1>Your favourites.<br>Delivered simply.</h1>
-        <p>Find popular chicken, meat, seafood and everyday favourites.</p>
-        <div class="search-wrap"><input id="mainSearch" placeholder="Search chicken, biryani, fish..." aria-label="Search food"><button class="primary" id="searchBtn">Search</button></div>
-      </div>
-      <div class="hero-emoji">🍗 🥗</div>
-    </div>
-    <div class="section-head"><h2>Shop by category</h2><span class="muted">Choose what you love</span></div>
-    <div class="chips" id="categoryChips"></div>
-    <div class="section-head"><h2 id="productsHeading">Popular near you</h2><span class="muted">Demo menu</span></div>
-    <div class="grid" id="productGrid"></div>
-  </section>
+<div id="homePage">
 
-  <section id="cartView" class="hidden">
-    <div class="section-head"><h2>🛒 Your cart</h2><button class="secondary" id="continueShopping">Continue shopping</button></div>
-    <div class="panel" id="cartContent"></div>
-  </section>
+  <h2>🍽️ Food Categories</h2>
 
-  <section id="chatView" class="hidden">
-    <div class="section-head"><h2>💬 VarchFood chat</h2><span class="muted">Find food by typing</span></div>
-    <div class="chat-layout">
-      <div class="chat-box">
-        <div class="chat-head"><div><strong>Food finder</strong><small>Type “chicken” to see varieties</small></div><span>● Online demo</span></div>
-        <div class="chat-messages" id="chatMessages"><div class="bubble">Hi! 👋 What are you looking for today? Try typing <b>chicken</b>, <b>fish</b>, <b>mutton</b> or <b>biryani</b>.</div></div>
-        <form class="chat-compose" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Type chicken..." aria-label="Chat message"><button class="primary">Search</button></form>
-        <div class="suggestions" id="chatResults"><div class="suggestion-title">Popular searches</div><button class="chip" data-chat="chicken">Chicken</button> <button class="chip" data-chat="fish">Fish</button> <button class="chip" data-chat="mutton">Mutton</button> <button class="chip" data-chat="biryani">Biryani</button></div>
-      </div>
-      <div class="note">The chat helps you discover food and add it to your cart. This is a front-end demo; it does not send live messages to a shop owner.</div>
-    </div>
-  </section>
+  <div class="tabs" id="categoryTabs">
+    <button class="active" onclick="setCategory('All',this)">All</button>
+    <button onclick="setCategory('Non-Veg',this)">🍗 Non-Veg</button>
+    <button onclick="setCategory('Veg',this)">🥗 Veg</button>
+    <button onclick="setCategory('Tiffins',this)">🥞 Tiffins</button>
+    <button onclick="setCategory('Fast Food',this)">🍕 Fast Food</button>
+  </div>
 
-  <section id="ordersView" class="hidden">
-    <div class="section-head"><h2>📦 My orders</h2><button class="secondary" id="refreshOrders">Refresh</button></div>
-    <div class="panel" id="ordersContent"></div>
-  </section>
+  <h2>🏪 Popular Restaurants</h2>
+  <div id="restaurantList"></div>
 
-  <section id="checkoutView" class="hidden">
-    <div class="section-head"><h2>🧾 Checkout</h2><button class="secondary" id="backCart">← Back to cart</button></div>
-    <div class="panel">
-      <div id="checkoutItems"></div>
-      <div class="total-row"><span>Total</span><span id="checkoutTotal">₹0</span></div>
-      <form id="checkoutForm" class="form-grid">
-        <div class="field full"><label for="custName">Full name *</label><input id="custName" required maxlength="80" placeholder="Your name"></div>
-        <div class="field"><label for="custPhone">Mobile number *</label><input id="custPhone" required inputmode="tel" pattern="[0-9+() -]{10,16}" placeholder="10-digit mobile number"></div>
-        <div class="field"><label for="payMethod">Payment method</label><select id="payMethod"><option>Cash on Delivery</option><option>Pay on pickup</option></select></div>
-        <div class="field full"><label for="custAddress">Delivery address *</label><textarea id="custAddress" rows="3" required maxlength="300" placeholder="House number, street, area, city"></textarea></div>
-        <div class="field full"><label for="orderNote">Order note (optional)</label><input id="orderNote" maxlength="200" placeholder="Any special instructions"></div>
-        <div class="field full"><button class="primary" type="submit">Place order</button></div>
-      </form>
-      <div class="note">Demo only: order details are saved in this browser. The shop owner will not receive them on another device until a secure backend is connected.</div>
-    </div>
-  </section>
-  <div class="footer">VarchFood · Sample catalogue and prices · Replace demo products/prices before launch</div>
-</main>
+  <h2>🔥 Popular Foods</h2>
+  <div class="grid" id="foodList"></div>
 
-<nav class="bottom-nav">
- <div class="nav-inner">
-  <button class="nav-btn active" data-view="home"><span class="ico">🏠</span>Home</button>
-  <button type="button" class="nav-btn" data-view="chat"><span class="ico">💬</span>Chat / Search</button>
-  <button type="button" class="nav-btn" data-view="cart"><span class="ico">🛒<span class="count" id="cartCount">0</span></span>Cart</button>
-  <button type="button" class="nav-btn" data-view="orders"><span class="ico">📦</span>My Orders</button>
- </div>
-</nav>
-
-<div id="authBackdrop" class="modal-backdrop hidden">
- <div class="modal">
-  <div class="modal-top"><div><h2 id="authTitle">Create your account</h2><div class="muted">Register before ordering</div></div><button class="close" id="closeAuth" aria-label="Close">×</button></div>
-  <div class="chips"><button class="chip active" id="registerTab">Register</button><button class="chip" id="loginTab">Sign in</button></div>
-  <form id="authForm" class="form-grid">
-   <div class="field full" id="authNameField"><label for="authName">Full name *</label><input id="authName" maxlength="80" placeholder="Your name"></div>
-   <div class="field full"><label for="authPhone">Mobile number *</label><input id="authPhone" required inputmode="tel" pattern="[0-9+() -]{10,16}" placeholder="Your mobile number"></div>
-   <div class="field full"><label for="authPin">Create a PIN (4–12 characters) *</label><input id="authPin" required minlength="4" maxlength="12" type="password" placeholder="Demo PIN"></div>
-   <div class="field full"><button class="primary" id="authSubmit" type="submit">Create account</button></div>
-  </form>
-  <div class="note">Demo account is stored only on this device and is not secure authentication. Do not use your real banking or email password.</div>
- </div>
 </div>
-<div id="toast" class="hidden" style="position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:30;background:#17231e;color:white;padding:12px 16px;border-radius:12px;max-width:90%;box-shadow:var(--shadow)"></div>
+
+<!-- CUSTOMER ORDER WINDOW -->
+<div id="orderPage" class="hidden">
+  <div class="panel">
+    <button onclick="goHome()">← Back to Home</button>
+    <h2>🛒 Place Your Order</h2>
+
+    <div id="selectedFoodInfo"></div>
+
+    <label>Customer Name</label>
+    <input id="customerName" placeholder="Enter your name">
+
+    <label>Mobile Number</label>
+    <input id="customerPhone" type="tel"
+           placeholder="Enter your mobile number">
+
+    <label>Your Order / Message</label>
+    <textarea id="customerMessage"
+      placeholder="Example: I want one Chicken Biryani."></textarea>
+
+    <button class="primary full" onclick="placeOrder()">
+      🛒 ORDER NOW
+    </button>
+
+    <p style="font-size:12px;color:#777">
+      Demo only: this request is saved in this browser.
+    </p>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cartPage" class="hidden">
+  <div class="panel">
+    <button onclick="goHome()">← Continue Shopping</button>
+    <h2>🛒 Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal"></h3>
+    <button class="primary full" onclick="checkoutCart()">
+      Proceed to Order
+    </button>
+  </div>
+</div>
+
+<!-- CUSTOMER ORDER HISTORY -->
+<div id="myOrdersPage" class="hidden">
+  <div class="panel">
+    <h2>📦 My Order Requests</h2>
+    <p>Orders saved in this browser are shown here.</p>
+    <div id="myOrders"></div>
+  </div>
+</div>
+
+<!-- OWNER DASHBOARD -->
+<div id="ownerPage" class="hidden">
+  <div class="panel">
+    <h2>👨‍🍳 Restaurant Owner Dashboard</h2>
+
+    <div class="notice">
+      Demo dashboard only. It is not protected by owner login.
+      Orders from other devices will not appear here until a secure
+      online database and authentication are connected.
+    </div>
+
+    <label>Select Demo Restaurant</label>
+    <select id="ownerRestaurant" onchange="renderOwnerOrders()">
+      <option value="Spice Hub">Spice Hub</option>
+      <option value="Green Bowl">Green Bowl</option>
+      <option value="Dosa Corner">Dosa Corner</option>
+      <option value="Pizza Point">Pizza Point</option>
+    </select>
+
+    <h3>🔔 Received Order Requests</h3>
+    <div id="ownerOrders"></div>
+  </div>
+</div>
+
+<div class="notice">
+  ⚠️ VarchFood demo: do not enter real personal information.
+  Real private messaging and cross-device orders require a secure backend.
+</div>
+
+<footer>
+  <button onclick="goHome()">🏠<br>Home</button>
+  <button onclick="focusSearch()">🔍<br>Search</button>
+  <button onclick="showCart()">🛒<br>Cart</button>
+  <button onclick="showMyOrders()">📦<br>My Orders</button>
+  <button onclick="showOwner()">👨‍🍳<br>Owner</button>
+</footer>
 
 <script>
-const products = [
-{id:1,name:"Chicken Curry Cut",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:220,unit:"500 g",emoji:"🍗",desc:"Fresh curry-cut pieces for home cooking.",pop:98,tag:"BESTSELLER"},
-{id:2,name:"Chicken Boneless",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:280,unit:"500 g",emoji:"🍖",desc:"Boneless chicken pieces, ready to cook.",pop:95,tag:"POPULAR"},
-{id:3,name:"Chicken Breast",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:250,unit:"500 g",emoji:"🍗",desc:"Lean chicken breast portions.",pop:89,tag:"POPULAR"},
-{id:4,name:"Chicken Drumsticks",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:240,unit:"500 g",emoji:"🍗",desc:"Juicy drumsticks for roasting or frying.",pop:87,tag:"POPULAR"},
-{id:5,name:"Chicken Wings",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:210,unit:"500 g",emoji:"🍗",desc:"Wings for snacks and grills.",pop:82,tag:""},
-{id:6,name:"Country Chicken",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:360,unit:"500 g",emoji:"🐓",desc:"Country-style chicken; availability may vary.",pop:76,tag:""},
-{id:7,name:"Chicken Liver",category:"Chicken",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=800&q=85",price:130,unit:"250 g",emoji:"🍲",desc:"Chicken liver for your favourite recipes.",pop:60,tag:""},
-{id:8,name:"Chicken Biryani",category:"Biryani",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=85",price:180,unit:"1 serving",emoji:"🍛",desc:"Aromatic rice with chicken and spices.",pop:99,tag:"BESTSELLER"},
-{id:9,name:"Mutton Biryani",category:"Biryani",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=85",price:260,unit:"1 serving",emoji:"🍛",desc:"Rich, flavourful biryani.",pop:91,tag:"POPULAR"},
-{id:10,name:"Mutton Curry Cut",category:"Mutton",image:"https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=85",price:420,unit:"500 g",emoji:"🥘",desc:"Mutton pieces for curries.",pop:84,tag:"POPULAR"},
-{id:11,name:"Mutton Boneless",category:"Mutton",image:"https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=800&q=85",price:490,unit:"500 g",emoji:"🥩",desc:"Boneless mutton pieces.",pop:70,tag:""},
-{id:12,name:"Rohu Fish",category:"Fish",image:"https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=800&q=85",price:190,unit:"500 g",emoji:"🐟",desc:"Fish cuts suitable for curry or fry.",pop:80,tag:"POPULAR"},
-{id:13,name:"Prawns",category:"Seafood",image:"https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=800&q=85",price:320,unit:"250 g",emoji:"🦐",desc:"Prawns for curry, fry or pulao.",pop:75,tag:""},
-{id:14,name:"Eggs",category:"Eggs",image:"https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=800&q=85",price:75,unit:"6 pcs",emoji:"🥚",desc:"Pack of six eggs.",pop:73,tag:""},
-{id:15,name:"Veg Biryani",category:"Biryani",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=85",price:140,unit:"1 serving",emoji:"🥗",desc:"Vegetable biryani with fragrant rice.",pop:68,tag:""},
-{id:16,name:"Paneer",category:"Vegetarian",image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85",price:120,unit:"200 g",emoji:"🧀",desc:"Paneer for curries and snacks.",pop:65,tag:""}
+const restaurants = [
+  {
+    name:"Spice Hub",
+    category:"Non-Veg",
+    image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500"
+  },
+  {
+    name:"Green Bowl",
+    category:"Veg",
+    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+  },
+  {
+    name:"Dosa Corner",
+    category:"Tiffins",
+    image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"
+  },
+  {
+    name:"Pizza Point",
+    category:"Fast Food",
+    image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+  }
 ];
-const categories=["All","Chicken","Biryani","Mutton","Fish","Seafood","Eggs","Vegetarian"];
-function readStore(key,fallback){try{const value=localStorage.getItem(key);return value?JSON.parse(value):fallback}catch(err){return fallback}}
-let cart=readStore("varchfood_cart",{}); if(!cart || typeof cart!=="object" || Array
+
+const foods = [
+  {
+    id:1,
+    name:"Chicken Biryani",
+    category:"Non-Veg",
+    price:180,
+    restaurant:"Spice Hub",
+    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"
+  },
+  {
+    id:2,
+    name:"Veg Meals",
+    category:"Veg",
+    price:100,
+    restaurant:"Green Bowl",
+    image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500"
+  },
+  {
+    id:3,
+    name:"Masala Dosa",
+    category:"Tiffins",
+    price:70,
+    restaurant:"Dosa Corner",
+    image:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"
+  },
+  {
+    id:4,
+    name:"Cheese Pizza",
+    category:"Fast Food",
+    price:150,
+    restaurant:"Pizza Point",
+    image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+  },
+  {
+    id:5,
+    name:"Paneer Curry",
+    category:"Veg",
+    price:130,
+    restaurant:"Green Bowl",
+    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"
+  },
+  {
+    id:6,
+    name:"Chicken Wings",
+    category:"Non-Veg",
+    price:160,
+    restaurant:"Spice Hub",
+    image:"https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500"
+  }
+];
+
+let selectedCategory = "All";
+let selectedFood = null;
+let cart = [];
+
+function readOrders(){
+  try{
+    return JSON.parse(localStorage.getItem("varchfood_orders") || "[]");
+  }catch(e){
+    return [];
+  }
+}
+
+function saveOrders(orders){
+  localStorage.setItem("varchfood_orders",JSON.stringify(orders));
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c];
+  });
+}
+
+function renderRestaurants(){
+  document.getElementById("restaurantList").innerHTML =
+    restaurants.map(r=>`
+      <div class="restaurant">
+        <img src="${r.image}" alt="${escapeHTML(r.name)}">
+        <div>
+          <h3>${escapeHTML(r.name)}</h3>
+          <p>${escapeHTML(r.category)} Restaurant</p>
+          <button class="secondary"
+            onclick="filterRestaurant('${r.name}')">
+            View Foods
+          </button>
+        </div>
+      </div>
+    `).join("");
+}
+
+function setCategory(value,button){
+  selectedCategory=value;
+
+  document.querySelectorAll("#categoryTabs button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+  renderFoods();
+}
+
+function filterRestaurant(name){
+  document.getElementById("search").value=name;
+  goHome();
+  renderFoods();
+  document.getElementById("foodList").scrollIntoView();
+}
+
+function renderFoods(){
+  const query=document.getElementById("search").value.toLowerCase();
+
+  const list=foods.filter(f=>
+    (selectedCategory==="All" || f.category===selectedCategory) &&
+    (
+      f.name.toLowerCase().includes(query) ||
+      f.restaurant.toLowerCase().includes(query) ||
+      f.category.toLowerCase().includes(query)
+    )
+  );
+
+  document.getElementById("foodList").innerHTML =
+    list.length ? list.map(f=>`
+      <div class="card">
+        <img src="${f.image}" alt="${escapeHTML(f.name)}">
+        <div class="info">
+          <h3>${escapeHTML(f.name)}</h3>
+          <p>${escapeHTML(f.restaurant)}</p>
+          <p>${escapeHTML(f.category)}</p>
+          <div class="price">₹${f.price}</div>
+          <button class="secondary full"
+            onclick="addToCart(${f.id})">+ Add to Cart</button>
+          <button class="primary full"
+            onclick="openOrder(${f.id})">Order / Comment</button>
+        </div>
+      </div>
+    `).join("") : "<p>No food found.</p>";
+}
+
+function openOrder(id){
+  selectedFood=foods.find(f=>f.id===id);
+
+  document.getElementById("selectedFoodInfo").innerHTML=`
+    <h3>${escapeHTML(selectedFood.name)}</h3>
+    <p>Restaurant: ${escapeHTML(selectedFood.restaurant)}</p>
+    <h3>Price: ₹${selectedFood.price}</h3>
+  `;
+
+  showPage("orderPage");
+}
+
+function placeOrder(){
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const message=document.getElementById("customerMessage").value.trim();
+
+  if(!selectedFood){
+    alert("Please select a food item.");
+    return;
+  }
+
+  if(!name || !message){
+    alert("Please enter your name and order message.");
+    return;
+  }
+
+  const orders=readOrders();
+
+  const order={
+    id:Date.now(),
+    customer:name,
+    phone:phone,
+    foodId:selectedFood.id,
+    food:selectedFood.name,
+    restaurant:selectedFood.restaurant,
+    price:selectedFood.price,
+    message:message,
+    status:"New Order",
+    time:new Date().toLocaleString()
+  };
+
+  orders.push(order);
+  saveOrders(orders);
+
+  document.getElementById("customerMessage").value="";
+
+  alert(
+    "Order request created!\n\n" +
+    selectedFood.name + "\n" +
+    "Restaurant: " + selectedFood.restaurant + "\n" +
+    "Status: New Order"
+  );
+
+  showMyOrders();
+}
+
+function addToCart(id){
+  const food=foods.find(f=>f.id===id);
+  cart.push(food);
+  document.getElementById("cartCount").textContent=cart.length;
+  alert(food.name+" added to cart.");
+}
+
+function showCart(){
+  showPage("cartPage");
+
+  const box=document.getElementById("cartItems");
+
+  if(cart.length===0){
+    box.innerHTML="<p>Your cart is empty.</p>";
+    document.getElementById("cartTotal").textContent="";
+    return;
+  }
+
+  box.innerHTML=cart.map((f,i)=>`
+    <div class="order-card">
+      <b>${escapeHTML(f.name)}</b>
+      <p>${escapeHTML(f.restaurant)} — ₹${f.price}</p>
+      <button onclick="removeCartItem(${i})">Remove</button>
+    </div>
+  `).join("");
+
+  document.getElementById("cartTotal").textContent=
+    "Total: ₹"+cart.reduce((sum,f)=>sum+f.price,0);
+}
+
+function removeCartItem(index){
+  cart.splice(index,1);
+  document.getElementById("cartCount").textContent=cart.length;
+  showCart();
+}
+
+function checkoutCart(){
+  if(cart.length===0){
+    alert("Your cart is empty.");
+    return;
+  }
+
+  selectedFood=cart[0];
+
+  document.getElementById("selectedFoodInfo").innerHTML=
+    "<p>Cart items: "+cart.length+
+    "</p><p>Total: ₹"+
+    cart.reduce((sum,f)=>sum+f.price,0)+"</p>";
+
+  showPage("orderPage");
+}
+
+function showMyOrders(){
+  showPage("myOrdersPage");
+
+  const orders=readOrders();
+
+  document.getElementById("myOrders").innerHTML=
+    orders.length ? orders.slice().reverse().map(o=>`
+      <div class="order-card">
+        <b>${escapeHTML(o.food)}</b>
+        <p>Restaurant: ${escapeHTML(o.restaurant)}</p>
+        <p>Message: ${escapeHTML(o.message)}</p>
+        <p>Price: ₹${o.price}</p>
+        <span class="badge">${escapeHTML(o.status)}</span>
+        <p><small>${escapeHTML(o.time)}</small></p>
+      </div>
+    `).join("") : "<p>No order requests yet.</p>";
+}
+
+function showOwner(){
+  showPage("ownerPage");
+  renderOwnerOrders();
+}
+
+function renderOwnerOrders(){
+  const restaurant=document.getElementById("ownerRestaurant").value;
+
+  const orders=readOrders().filter(o=>o.restaurant===restaurant);
+
+  document.getElementById("ownerOrders").innerHTML=
+    orders.length ? orders.slice().reverse().map(o=>`
+      <div class="order-card">
+        <h3>🔔 New Order</h3>
+        <p><b>Customer:</b> ${escapeHTML(o.customer)}</p>
+        <p><b>Food:</b> ${escapeHTML(o.food)}</p>
+        <p><b>Price:</b> ₹${o.price}</p>
+        <p><b>Message:</b> ${escapeHTML(o.message)}</p>
+        <p><b>Phone:</b> ${escapeHTML(o.phone || "Not provided")}</p>
+        <span class="badge">${escapeHTML(o.status)}</span>
+        <p><small>${escapeHTML(o.time)}</small></p>
+        <button class="primary"
+          onclick="updateOrder(${o.id},'Accepted')">Accept</button>
+        <button
+          onclick="updateOrder(${o.id},'Rejected')">Reject</button>
+      </div>
+    `).join("") : "<p>No orders for this restaurant in this browser.</p>";
+}
+
+function updateOrder(id,status){
+  const orders=readOrders();
+  const order=orders.find(o=>o.id===id);
+
+  if(order){
+    order.status=status;
+    saveOrders(orders);
+    renderOwnerOrders();
+    alert("Order status updated: "+status);
+  }
+}
+
+function showPage(id){
+  ["homePage","orderPage","cartPage","myOrdersPage","ownerPage"]
+    .forEach(page=>document.getElementById(page).classList.add("hidden"));
+
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  showPage("homePage");
+}
+
+function focusSearch(){
+  goHome();
+  document.getElementById("search").focus();
+}
+
+renderRestaurants();
+renderFoods();
+</script>
+
+</body>
+</html>
